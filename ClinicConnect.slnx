@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ClinicConnect.Api/ClinicConnect.Api.csproj" />
+    <Project Path="src/ClinicConnect.Business/ClinicConnect.Business.csproj" />
+    <Project Path="src/ClinicConnect.Data/ClinicConnect.Data.csproj" />
+    <Project Path="src/ClinicConnect.Domain/ClinicConnect.Domain.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ClinicConnect.Business.Tests/ClinicConnect.Business.Tests.csproj" />
+  </Folder>
+</Solution>
