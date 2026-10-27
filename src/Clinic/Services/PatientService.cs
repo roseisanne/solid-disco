@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Clinic.Data;
 using Clinic.Domain;
 
@@ -37,6 +38,18 @@ public class PatientService(IPatientRepository repository, IClock clock)
     // TASK 1: implement me.
     public IReadOnlyList<Patient> SearchByLastName(string lastName)
     {
-        throw new NotImplementedException();
+        var listOfLastNames = new List<Patient>();
+
+        if (string.IsNullOrWhiteSpace(lastName))
+            throw new ValidationException("No input");
+
+        var last = lastName.Trim();
+        foreach (var item in repository.GetAll())
+        {
+            if (last.ToLower().Equals(item.LastName.ToLower()))
+                listOfLastNames.Add(item);
+        }
+
+        return listOfLastNames.OrderBy(p => p.FirstName).ToList();;
     }
 }
