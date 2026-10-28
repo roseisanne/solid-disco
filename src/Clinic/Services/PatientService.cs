@@ -50,6 +50,6 @@ public class PatientService(IPatientRepository repository, IClock clock)
                 listOfLastNames.Add(item);
         }
 
-        return listOfLastNames.OrderBy(p => p.FirstName).ToList();;
+        return listOfLastNames.OrderBy(p => p.FirstName).ToList();
     }
 }

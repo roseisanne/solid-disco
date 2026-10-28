@@ -51,7 +51,8 @@ public class AppointmentService(IAppointmentRepository repository, IClock clock)
     public IReadOnlyList<Appointment> GetDailySchedule(int providerId, DateTime date)
     {
         return repository.GetByProvider(providerId)
-            .Where(a => a.Start.Day == date.Day)
+            .Where(a => a.Start.Month == date.Month && a.Status != AppointmentStatus.Cancelled)
+            .OrderBy(a => a.Start)
             .ToList();
     }
 }
