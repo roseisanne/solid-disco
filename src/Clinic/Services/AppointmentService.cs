@@ -10,6 +10,7 @@ public class AppointmentService(IAppointmentRepository repository, IClock clock)
     // TASK 2: implement me.
     public Appointment Book(int patientId, int providerId, DateTime start, TimeSpan? duration = null)
     {
+        //if null do 30
         TimeSpan newDuration = duration ?? TimeSpan.FromMinutes(30);
 
         if (start < clock.Now)
@@ -39,7 +40,11 @@ public class AppointmentService(IAppointmentRepository repository, IClock clock)
     // TASK 3: implement me.
     public void Cancel(int appointmentId)
     {
-        throw new NotImplementedException();
+        var appt = repository.GetById(appointmentId);
+        if (appt == null)
+            throw new NotFoundException("Appt Id does not exist");
+    
+        appt.Status = AppointmentStatus.Cancelled;
     }
 
     // TASK 4: this "works" but has bugs. Tests will show you. Find and fix them.
